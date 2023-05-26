@@ -50,7 +50,7 @@ CREATE TABLE tblTreatments (
     treatmentName NVARCHAR(50) NOT NULL,
     treatmentDescription NVARCHAR(100),
     treatmentCost DECIMAL(5,2) NOT NULL CHECK (treatmentCost >= 0),
-    staffRequired NVARCHAR(10) NOT NULL
+    staffRequired NVARCHAR(15) NOT NULL
 );
 
 -- Create tblAppointments
