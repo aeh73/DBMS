@@ -4,18 +4,24 @@ CREATE TABLE tblStaffType (
     staffTypeDesc NVARCHAR(10) NOT NULL
 );
 
--- Create tblOwners
-CREATE TABLE tblOwners (
-    ownerID INT IDENTITY(1,1) PRIMARY KEY,
-    ownerFName NVARCHAR(25) NOT NULL,
-    ownerLName NVARCHAR(25) NOT NULL,
-    address NVARCHAR(500)
+-- Create tblPaymentType
+CREATE TABLE tblPaymentType (
+    paymentTypeID INT IDENTITY(1,1) PRIMARY KEY,
+    paymentTypeDesc NVARCHAR(20) NOT NULL
 );
 
 -- Create tblPetTypes
 CREATE TABLE tblPetTypes (
     petTypeID CHAR(2) PRIMARY KEY,
     petTypeDesc NVARCHAR(20) NOT NULL
+);
+
+-- Create tblOwners
+CREATE TABLE tblOwners (
+    ownerID INT IDENTITY(1,1) PRIMARY KEY,
+    ownerFName NVARCHAR(25) NOT NULL,
+    ownerLName NVARCHAR(25) NOT NULL,
+    address NVARCHAR(500)
 );
 
 -- Create tblPets
@@ -67,12 +73,6 @@ CREATE TABLE tblAppointments (
     paidStatus CHAR(1) CHECK (paidStatus IN ('Y', 'N')) NOT NULL DEFAULT 'N'
 );
 
--- Create tblPaymentType
-CREATE TABLE tblPaymentType (
-    paymentTypeID INT IDENTITY(1,1) PRIMARY KEY,
-    paymentTypeDesc NVARCHAR(20) NOT NULL
-);
-
 -- Create tblPayments
 CREATE TABLE tblPayments (
     paymentID INT IDENTITY(1,1) PRIMARY KEY,
@@ -80,6 +80,5 @@ CREATE TABLE tblPayments (
     invoiceNumber NVARCHAR(10) FOREIGN KEY REFERENCES tblAppointments(invoiceNumber),
     paymentAmount DECIMAL(5,2) NOT NULL CHECK (paymentAmount >= 0),
     paymentTypeID INT FOREIGN KEY REFERENCES tblPaymentType(paymentTypeID),
-    paymentDate DATE NOT NULL,
+    paymentDate DATE NOT NULL
 );
-
