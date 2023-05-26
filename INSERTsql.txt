@@ -1,0 +1,75 @@
+-- Insert into tblPetTypes
+INSERT INTO tblPetTypes (petTypeID, petTypeDesc) VALUES 
+('CT', 'cat'),
+('DG', 'dog'),
+('HR', 'horse'),
+('RB', 'rabbit'),
+('RD', 'rodent'),
+('OT', 'other');
+
+-- Insert into tblTreatments
+INSERT INTO tblTreatments (treatmentCode, treatmentName, treatmentDescription, treatmentCost, staffRequired) VALUES 
+('T40', '30 min vet', 'Home Visit', 100, 'Vet'),
+('T41', 'D-VAX-1', 'Dog - first dose standard' , 70, 'Vet or Nurse'),
+('T42', 'D-VAX-2', 'Dog - booster annual standard dog', 50, 'Vet or Nurse'),
+('T43', 'C-VAX-1', 'Cat - first dose standard', 60, 'Vet or Nurse'),
+('T44', 'C-VAX-2', 'Cat - booster annual standard', 35, 'Vet or Nurse'),
+('T45', 'diagnostic', 'Examination to determine cause and suggest treatment', 45, 'Vet'),
+('T46', 'D-teeth', 'Dog - examine and monitor teeth / mouth', 30, 'Vet or Nurse'),
+('T47', 'test', 'Biopsy, blood test etc.', 33, 'Vet or Nurse'),
+('T48', 'Minor Operation', 'Small op under local anesthetic', 150, 'Vet');
+
+-- Insert into tblStaffType
+INSERT INTO tblStaffType (staffTypeDesc) VALUES ('VET'), ('VET NURSE');
+
+-- Insert into tblStaff
+INSERT INTO tblStaff (staffFName, staffLName, staffTypeID) VALUES 
+('Gurkiran', 'Greenwell', 1),
+('Sarah', 'Smith', 2);
+
+
+-- Insert into tblOwners
+INSERT INTO tblOwners (ownerFName, ownerLName) VALUES 
+('Trevor', 'Tatler'),
+('Bettina', 'Bishop'),
+('Sally', 'Smith'),
+('Yolande', 'Yearling'),
+('Paul', 'Preston'),
+('Praney', 'Patel');
+
+
+-- Insert into tblPets
+INSERT INTO tblPets (petName, petTypeID, ownerID, petDOB) VALUES 
+('Ratty', 'RD', 1, NULL),
+('Carrots', 'RB', 2, NULL),
+('Pinchbeck', 'HR', 3, NULL),
+('Sleeky', 'CT', 4, NULL),
+('Rover', 'DG', 5, NULL),
+('Bugs', 'RB', 6, NULL);
+
+-- Insert into tblSurgeries
+INSERT INTO tblSurgeries (surgeryCode, surgeryDetails) VALUES 
+('WG', 'Worthing Surgery Montague Place'),
+('BN', 'Brighton Surgery Old Steine Place'),	
+('HV', 'Home Visit');
+
+-- Insert into tblAppointments
+INSERT INTO tblAppointments (staffID, petID, treatmentCode, surgeryID, date, time, outcome, invoiceNumber, paidStatus) VALUES
+(1, 1, 'T47', 1, '2022-11-13', '09:00', 'biopsy sent', 'FFF1234', 'Y'),
+(1, 2, 'T45', 1, '2022-11-13', '11:45', 'Annual check - no issues', 'GGG1234', 'N'),
+(1, 3, 'T40', 3, '2022-11-13', '13:15', NULL, NULL, 'N'),
+(1, 4, 'T45', 2, '2022-11-13', '15:00', NULL, NULL, 'N'),
+(1, 1, 'T48', 1, '2022-11-13', '19:00', NULL, NULL, 'N'),
+(2, 5, 'T46', 1, '2022-11-13', '10:45', 'Advised chew sticks', 'CCC123', 'N'),
+(2, 6, 'T47', 1, '2022-11-13', '13:30', NULL, NULL, 'N');
+
+-- Insert into tblPayments
+INSERT INTO tblPayments (ownerID, invoiceNumber, paymentAmount, paymentTypeID, paymentDate, receiptNumber) 
+VALUES 
+(1, 'FFF1234', 33.0, 2, '2022-11-13', 'REC001');
+
+-- Insert into tblPaymentType
+INSERT INTO tblPaymentType (paymentTypeDesc) VALUES 
+('Cash'),
+('Credit Card'),
+('Cheque');
