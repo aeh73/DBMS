@@ -64,9 +64,9 @@ INSERT INTO tblAppointments (staffID, petID, treatmentCode, surgeryID, date, tim
 (2, 6, 'T47', 1, '2022-11-13', '13:30', NULL, NULL, 'N');
 
 -- Insert into tblPayments
-INSERT INTO tblPayments (ownerID, invoiceNumber, paymentAmount, paymentTypeID, paymentDate, receiptNumber) 
+INSERT INTO tblPayments (ownerID, invoiceNumber, paymentAmount, paymentTypeID, paymentDate) 
 VALUES 
-(1, 'FFF1234', 33.0, 2, '2022-11-13', 'REC001');
+(1, 'FFF1234', 33.0, 2, '2022-11-13');
 
 -- Insert into tblPaymentType
 INSERT INTO tblPaymentType (paymentTypeDesc) VALUES 
