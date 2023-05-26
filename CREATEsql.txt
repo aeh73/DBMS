@@ -67,6 +67,12 @@ CREATE TABLE tblAppointments (
     paidStatus CHAR(1) CHECK (paidStatus IN ('Y', 'N')) NOT NULL DEFAULT 'N'
 );
 
+-- Create tblPaymentType
+CREATE TABLE tblPaymentType (
+    paymentTypeID INT IDENTITY(1,1) PRIMARY KEY,
+    paymentTypeDesc NVARCHAR(20) NOT NULL
+);
+
 -- Create tblPayments
 CREATE TABLE tblPayments (
     paymentID INT IDENTITY(1,1) PRIMARY KEY,
@@ -78,8 +84,3 @@ CREATE TABLE tblPayments (
     receiptNumber NVARCHAR(10) UNIQUE NOT NULL
 );
 
--- Create tblPaymentType
-CREATE TABLE tblPaymentType (
-    paymentTypeID INT IDENTITY(1,1) PRIMARY KEY,
-    paymentTypeDesc NVARCHAR(20) NOT NULL
-);
