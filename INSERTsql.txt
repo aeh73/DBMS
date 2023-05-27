@@ -36,8 +36,8 @@ INSERT INTO tblPets (petName, petTypeID, ownerID, petDOB) VALUES
 
 -- Insert into tblStaff
 INSERT INTO tblStaff (staffFName, staffLName, staffTypeID) VALUES 
-('Gurkiran', 'Greenwell', (SELECT staffTypeID FROM tblStaffType WHERE staffTypeDesc = 'VET')),
-('Sarah', 'Smith', (SELECT staffTypeID FROM tblStaffType WHERE staffTypeDesc = 'VET NURSE'));
+('Gurkiran', 'Greenwell', 1),
+('Sarah', 'Smith', 2);
 
 -- Insert into tblSurgeries
 INSERT INTO tblSurgeries (surgeryCode, surgeryDetails) VALUES 
@@ -69,4 +69,4 @@ INSERT INTO tblAppointments (staffID, petID, treatmentCode, surgeryID, date, tim
 
 -- Insert into tblPayments
 INSERT INTO tblPayments (ownerID, invoiceNumber, paymentAmount, paymentTypeID, paymentDate) VALUES 
-(1, 'FFF1234', 33, (SELECT paymentTypeID FROM tblPaymentType WHERE paymentTypeDesc = 'Cash'), '2022-11-20');
+(1, 'FFF1234', 33, 2, '2022-11-13');
