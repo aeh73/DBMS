@@ -70,3 +70,49 @@ INSERT INTO tblAppointments (staffID, petID, treatmentCode, surgeryID, date, tim
 -- Insert into tblPayments
 INSERT INTO tblPayments (ownerID, invoiceNumber, paymentAmount, paymentTypeID, paymentDate) VALUES 
 (1, 'FFF1234', 33, 2, '2022-11-13');
+
+
+-- QUERIES
+
+
+INSERT INTO tblPets (petName, petTypeID, ownerID, petDOB, petComments) VALUES 
+('Ratty The 2nd', 'RD', 1, '2022-11-1', 'Rattys little brother');
+
+
+
+SELECT *
+FROM tblOwners AS o
+JOIN tblPets AS p ON o.ownerID = p.ownerID
+
+
+DELETE FROM tblPets where petID = '10'
+
+select * from tblStaff join tblStaffType ON tblStaff.staffTypeID = tblStaffType.staffTypeID;
+
+select * from tblAppointments
+
+select * from tblAppointments 
+
+
+
+select
+    tblAppointments.date, 
+    tblAppointments.time, 
+    tblPets.petName,
+    tblOwners.ownerFName, 
+    tblOwners.ownerLName, 
+    tblStaff.staffFName, 
+    tblStaff.staffLName,
+    tblTreatments.treatmentCode, 
+    tblTreatments.treatmentCost,
+	tblSurgeries.surgeryDetails
+from tblAppointments    
+join tblStaff ON tblAppointments.staffID = tblStaff.staffID 
+join tblPets ON tblAppointments.petID = tblPets.petID   
+join tblOwners ON tblPets.ownerID = tblOwners.ownerID    
+join tblTreatments ON tblAppointments.treatmentCode = tblTreatments.treatmentCode
+join tblSurgeries ON tblAppointments.surgeryID = tblSurgeries.surgeryID
+    
+where 
+    tblAppointments.date = '2022-11-13' AND 
+    tblAppointments.staffID = 1;

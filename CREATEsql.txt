@@ -82,3 +82,5 @@ CREATE TABLE tblPayments (
     paymentTypeID INT FOREIGN KEY REFERENCES tblPaymentType(paymentTypeID),
     paymentDate DATE NOT NULL
 );
+
+
