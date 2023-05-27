@@ -1,44 +1,44 @@
 -- Create tblStaffType
 CREATE TABLE tblStaffType (
     staffTypeID INT IDENTITY(1,1) PRIMARY KEY,
-    staffTypeDesc NVARCHAR(10) NOT NULL
+    staffTypeDesc VARCHAR(10) NOT NULL
 );
 
 -- Create tblPaymentType
 CREATE TABLE tblPaymentType (
     paymentTypeID INT IDENTITY(1,1) PRIMARY KEY,
-    paymentTypeDesc NVARCHAR(20) NOT NULL
+    paymentTypeDesc VARCHAR(20) NOT NULL
 );
 
 -- Create tblPetTypes
 CREATE TABLE tblPetTypes (
     petTypeID CHAR(2) PRIMARY KEY,
-    petTypeDesc NVARCHAR(20) NOT NULL
+    petTypeDesc VARCHAR(20) NOT NULL
 );
 
 -- Create tblOwners
 CREATE TABLE tblOwners (
     ownerID INT IDENTITY(1,1) PRIMARY KEY,
-    ownerFName NVARCHAR(25) NOT NULL,
-    ownerLName NVARCHAR(25) NOT NULL,
-    address NVARCHAR(500)
+    ownerFName VARCHAR(25) NOT NULL,
+    ownerLName VARCHAR(25) NOT NULL,
+    address VARCHAR(500)
 );
 
 -- Create tblPets
 CREATE TABLE tblPets (
     petID INT IDENTITY(1,1) PRIMARY KEY,
-    petName NVARCHAR(25) NOT NULL,
+    petName VARCHAR(25) NOT NULL,
     petTypeID CHAR(2) FOREIGN KEY REFERENCES tblPetTypes(petTypeID),
     ownerID INT FOREIGN KEY REFERENCES tblOwners(ownerID),
     petDOB DATE,
-    petComments NVARCHAR(1000)
+    petComments VARCHAR(1000)
 );
 
 -- Create tblStaff
 CREATE TABLE tblStaff (
     staffID INT IDENTITY(1,1) PRIMARY KEY,
-    staffFName NVARCHAR(25) NOT NULL,
-    staffLName NVARCHAR(25) NOT NULL,
+    staffFName VARCHAR(25) NOT NULL,
+    staffLName VARCHAR(25) NOT NULL,
     staffTypeID INT FOREIGN KEY REFERENCES tblStaffType(staffTypeID),
     lineManagerID INT FOREIGN KEY REFERENCES tblStaff(staffID)
 );
@@ -46,17 +46,17 @@ CREATE TABLE tblStaff (
 -- Create tblSurgeries 
 CREATE TABLE tblSurgeries (
     surgeryID INT IDENTITY(1,1) PRIMARY KEY,
-    surgeryCode NVARCHAR(2) NOT NULL,
-    surgeryDetails NVARCHAR(100) NOT NULL
+    surgeryCode VARCHAR(2) NOT NULL,
+    surgeryDetails VARCHAR(100) NOT NULL
 );
 
 -- Create tblTreatments
 CREATE TABLE tblTreatments (
     treatmentCode CHAR(3) PRIMARY KEY,
-    treatmentName NVARCHAR(50) NOT NULL,
-    treatmentDescription NVARCHAR(100),
+    treatmentName VARCHAR(50) NOT NULL,
+    treatmentDescription VARCHAR(100),
     treatmentCost DECIMAL(5,2) NOT NULL CHECK (treatmentCost >= 0),
-    staffRequired NVARCHAR(15) NOT NULL
+    staffRequired VARCHAR(15) NOT NULL
 );
 
 -- Create tblAppointments
@@ -68,8 +68,8 @@ CREATE TABLE tblAppointments (
     surgeryID INT NULL FOREIGN KEY REFERENCES tblSurgeries(surgeryID),
     date DATE NOT NULL,
     time TIME NOT NULL,
-    outcome NVARCHAR(100),
-    invoiceNumber NVARCHAR(10) UNIQUE NULL,
+    outcome VARCHAR(100),
+    invoiceNumber VARCHAR(10) UNIQUE NULL,
     paidStatus CHAR(1) CHECK (paidStatus IN ('Y', 'N')) NOT NULL DEFAULT 'N'
 );
 
@@ -77,7 +77,7 @@ CREATE TABLE tblAppointments (
 CREATE TABLE tblPayments (
     paymentID INT IDENTITY(1,1) PRIMARY KEY,
     ownerID INT FOREIGN KEY REFERENCES tblOwners(ownerID),
-    invoiceNumber NVARCHAR(10) FOREIGN KEY REFERENCES tblAppointments(invoiceNumber),
+    invoiceNumber VARCHAR(10) FOREIGN KEY REFERENCES tblAppointments(invoiceNumber),
     paymentAmount DECIMAL(5,2) NOT NULL CHECK (paymentAmount >= 0),
     paymentTypeID INT FOREIGN KEY REFERENCES tblPaymentType(paymentTypeID),
     paymentDate DATE NOT NULL
